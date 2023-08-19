@@ -1,0 +1,56 @@
+.primary__button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-family: theme("fontFamily.mono");
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 0.65rem 1.75rem;
+  background-clip: padding-box;
+  border-radius: 0.4rem;
+  color: #fff;
+  background-size: 220%;
+  outline: 2px solid theme("colors.indigo.dark");
+  background-image: linear-gradient(
+    120deg,
+    transparent 0%,
+    transparent 50%,
+    theme("colors.indigo.dark") 50%
+  );
+  transition: all 0.3s ease-in-out;
+}
+.primary__button:hover,
+.primary__button:active {
+  background-position: 100%;
+  color: #fff;
+  box-shadow: 0 0 1rem theme("colors.indigo.dark");
+}
+.secondary__button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-family: theme("fontFamily.mono");
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 0.65rem 1.75rem;
+  background-clip: padding-box;
+  border-radius: 0.4rem;
+  color: #fff;
+  background-size: 220%;
+  outline: 2px solid #fff;
+  background-image: linear-gradient(
+    120deg,
+    transparent 0%,
+    transparent 50%,
+    theme("colors.indigo.dark") 50%
+  );
+  transition: all 0.3s ease-in-out;
+}
+.secondary__button:hover,
+.secondary__button:active {
+  background-position: 100%;
+  color: #fff;
+  box-shadow: 0 0 1rem theme("colors.indigo.dark");
+}

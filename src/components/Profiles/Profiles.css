@@ -1,0 +1,17 @@
+.profile {
+  display: inline-flex;
+  padding: 1.7rem 0 1rem 0;
+}
+.profile > a:hover,
+.profile > a:focus {
+  filter: drop-shadow(0 0 1rem theme("colors.indigo.light"));
+  filter: brightness(1.1);
+}
+.profile > a:hover svg,
+.profile > a:focus svg {
+  stroke: theme("colors.indigo.light");
+}
+.flex > a > svg {
+  color: white;
+  opacity: 80%;
+}
