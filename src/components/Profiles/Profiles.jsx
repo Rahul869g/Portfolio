@@ -14,6 +14,10 @@ const Profiles = () => {
     {
       name: "mail",
       url: "mailto:rahul916g@gmail.com"
+    },
+    {
+      name: "download",
+      url: "/resume"
     }
 
     // {
@@ -34,7 +38,7 @@ const Profiles = () => {
             key={name}
             className="link"
             rel="noreferrer"
-            target="_blank"
+            target={name === "download" ? "_self" : "_blank"}
             aria-label={name}
           >
             <Icon name={name} />

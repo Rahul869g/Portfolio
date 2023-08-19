@@ -4,7 +4,8 @@ import {
   IconInstagram,
   IconTwitter,
   IconGithub,
-  IconExternal
+  IconExternal,
+  IconFileDownload // Import your custom download icon component
 } from ".";
 
 const Icon = ({ name }) => {
@@ -19,6 +20,8 @@ const Icon = ({ name }) => {
       return <IconInstagram />;
     case "twitter":
       return <IconTwitter />;
+    case "download": // Handle the "download" case
+      return <IconFileDownload />;
     default:
       return <IconExternal />;
   }
