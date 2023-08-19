@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
@@ -12,9 +12,7 @@ import Resume from "./components/Resume/ResumeNew";
 import NavbarForLP from "./components/Navbar/NavbarForLP";
 import HomeSection from "./components/HomeSection/HomeSection";
 import AboutMeSection from "./components/AboutMeSection/AboutMeSection";
-// import ProjectSection from "./components/ProjectSection/ProjectSection";
 import Projects from "./components/Projects/Projects";
-
 import ContactMeSection from "./components/ContactMeSection/ContactMeSection";
 import LandingPage from "./pages/LandingPage";
 import Footer from "./components/Footer/Footer";
@@ -24,12 +22,13 @@ function App() {
   gsap.registerPlugin(ScrollTrigger);
   gsap.config({ nullTargetWarn: false });
   const [isDesktop, setIsDesktop] = useState(true);
-  const [showResume, setShowResume] = useState(false); // State to track if Resume should be shown
+  const [showResume, setShowResume] = useState(false);
   const [clientHeight, setClientHeight] = useState(0);
   const [clientWidth, setClientWidth] = useState(0);
+  const location = useLocation();
+
   useEffect(() => {
     const { innerWidth, innerHeight, orientation, history } = window;
-
     const result =
       typeof orientation === "undefined" &&
       navigator.userAgent.indexOf("IEMobile") === -1;
@@ -39,45 +38,33 @@ function App() {
     setClientHeight(innerHeight);
     setClientWidth(innerWidth);
   }, [isDesktop]);
+
   return (
     <div className="bg-black">
-      {
-        <div className="">
-          <ProgressIndicator />
+      <ProgressIndicator />
+      <Cursor isDesktop={isDesktop} />
 
-          <Cursor isDesktop={isDesktop} />
-          <div className="">
-            {location.pathname === "/" ? <NavbarForLP /> : <NavbarForLP />}
-            {/* {location.pathname === "/" ? <NavbarForLP /> : <Navbar />} */}
-          </div>
-          <div className="">
-            <section className="">
-              <LandingPage />
-            </section>
+      <div className="">
+        <NavbarForLP />
+
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/resume" element={<Resume />} />
+        </Routes>
+
+        {location.pathname !== "/resume" && (
+          <>
             <section className="">
               <AboutMeSection clientHeight={clientHeight} />
             </section>
             <section className="">
               <Projects isDesktop={isDesktop} clientHeight={clientHeight} />
             </section>
-          </div>
-          <div className="mt-[40px] overflow-x-hidden ">
-            <Routes>
-              {/* <Route path="/" element={<LandingPage />} /> */}
-              <Route
-                path="/resume"
-                element={
-                  <Resume
-                    showResume={showResume}
-                    setShowResume={setShowResume}
-                  />
-                }
-              />
-            </Routes>
-            <Footer />
-          </div>
-        </div>
-      }
+          </>
+        )}
+
+        <Footer />
+      </div>
     </div>
   );
 }
